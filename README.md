@@ -16,3 +16,5 @@ The shared hash key will be stored on each computer within the transfer for futu
 <p align="center">
   <img src="https://github.com/SAED2906/Encryptex-ClientSide/blob/main/GUIDemo.png" width="450" alt="accessibility text">
 </p>
+
+ServerSide: https://github.com/SAED2906/Encryptex-ServerSide
