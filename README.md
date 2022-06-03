@@ -13,3 +13,6 @@ When a user attempts to login the program sends the user info to a database serv
 The encrypted file then gets transferred to the client where it is decrypted and stored.
 The shared hash key will be stored on each computer within the transfer for future use as well as a PCID to help distinguish different computers.
 
+<p align="center">
+  <img src="https://github.com/SAED2906/Encryptex-ClientSide/blob/main/Process.png" width="750" alt="accessibility text">
+  </p>
