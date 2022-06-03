@@ -1,5 +1,10 @@
 # Encryptex-ClientSide
 
+<p align="center">
+  <img src="(https://github.com/SAED2906/Encryptex-ClientSide/blob/main/GUIDemo.png)" width="350" title="hover text">
+  <img src="https://github.com/SAED2906/Encryptex-ClientSide/blob/main/GUIDemo.png" width="350" alt="accessibility text">
+</p>
+
 Encryptex is a Java program designed to create a platform for end-to-end encrypted file transfers between registered users of the program, users can register and login to a server version of the project that handles all the requests on a different computer.
 
 This is the client-side version of the project.
