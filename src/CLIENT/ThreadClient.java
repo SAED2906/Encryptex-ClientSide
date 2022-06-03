@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -40,15 +41,15 @@ import Statistics.Time;
  */
 public class ThreadClient{
 	
-	public static String host_Final = "105.208.196.39";
+	public static String host_Final = "'";
 	
 	
 	
 	
-	public static void isAlive(String UUID) {
+	public static void isAlive(String UUID) throws UnknownHostException {
 		//Allows Server to determine which users (UID) are online at a given moment by sending isAlive notifications to server, if one is not sent in a given time, the server presumes the clientThread is Dead
 		
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         
         
@@ -89,7 +90,7 @@ public class ThreadClient{
 	
 	
 	public static String getHash(String Destination_UID, String Home_UID) throws UnknownHostException, IOException {//uses user ID and home user ID to get Shared Hash on server
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         
         
@@ -122,7 +123,7 @@ public class ThreadClient{
 	}
 	
 	public static String getOnline() throws UnknownHostException, IOException {//uses user ID and home user ID to get Shared Hash on server
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         
         
@@ -148,7 +149,7 @@ public class ThreadClient{
                 //Use Key
                 String temp = in.nextLine();
                 String temp2 = "";
-                System.out.println(temp);
+                //System.out.println(temp);
                 
                 Scanner sc = new Scanner(temp).useDelimiter(",");
                 while (sc.hasNext()) {
@@ -162,7 +163,7 @@ public class ThreadClient{
 	}
 	
 	public static void Kill(String UUID) throws UnknownHostException, IOException {//uses user ID and home user ID to get Shared Hash on server
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         
         
@@ -194,7 +195,7 @@ public class ThreadClient{
 	}
 	
 	public static String receiveFile(String Home, String Dest) throws UnknownHostException, IOException {
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         String text = "";
         int count = 0;
@@ -219,12 +220,12 @@ public class ThreadClient{
 //                if (input.equalsIgnoreCase("exit")) ;//break;
 //                System.out.println("Echoed from server: " + in.nextLine());
                 String temp = in.nextLine();
-                System.out.println(temp.substring(0, 4));
+                //System.out.println(temp.substring(0, 4));
                 if (temp.substring(0, 4).contains("DONE")){
                 	received = true;
                 	
                 	text += temp.substring(4);
-                	System.out.println("Test--------");
+                	//System.out.println("Test--------");
                 	break;
                 }else {
                 	text += temp;
@@ -252,14 +253,14 @@ public class ThreadClient{
 	}
 	
 	public static void sendFile(byte[] file, String dest, String from) throws UnknownHostException, InterruptedException{
-		String HOST = host_Final;
+		String HOST = InetAddress.getLocalHost().getHostAddress();
         final int PORT = 25565;
         System.out.println("Need to scan File");
         
         System.out.println("Client started.");
         String hex = toHexDump.BytesToHex(file);
     	int length = (int) (hex.length()/60000);
-    	JOptionPane.showMessageDialog(null, length);
+    	//JOptionPane.showMessageDialog(null, length);
         
         try (
             Socket socket = new Socket(HOST, PORT);
@@ -278,7 +279,7 @@ public class ThreadClient{
         	
         	FileSender.start(hex);
         	MainGui.appendText(Time.getTimeHMS() + ": File Transfer Successful " + "\n" + Time.getTimeHMS() + ": File Name: " + dest + "," + from);
-        	System.out.println("Echoed from server: " + in.nextLine());
+        	//System.out.println("Echoed from server: " + in.nextLine());
         	
 //        	out.println(s.nextLine());
 //        	
@@ -371,8 +372,9 @@ public class ThreadClient{
 		}
 	}
 	
-	public static boolean Login(String Username, String Password) throws UnknownHostException, IOException {
+	public static boolean Login(String Username, String Password, String ip) throws UnknownHostException, IOException {
 		boolean status = false;
+		host_Final = ip;
 		String HOST = host_Final;
         final int PORT = 25565;
         
@@ -388,12 +390,12 @@ public class ThreadClient{
         		
         		
         ) {
-        	System.out.println("1");
+        	
         	//Send key for encryption
-                System.out.print("Input: ");
+                System.out.print("Attempting Login");
                 String input = s.nextLine();
                 out.println(input);
-                System.out.println("A");
+                //System.out.println("A");
                 if (input.equalsIgnoreCase("exit")) ;//break;
                 String fromServer = in.nextLine();
                 if (!fromServer.isEmpty()) {
@@ -407,7 +409,7 @@ public class ThreadClient{
                 	status = true;
                 }
                 
-                System.out.println("Echoed from server: " + fromServer);
+                System.out.println(": " + fromServer);
             //Receive Key
                 
                 //Use Key
@@ -419,7 +421,8 @@ public class ThreadClient{
         }
 	}
 	
-	public static void Register(String Username, String Password, String HashKey) throws UnknownHostException, IOException {
+	public static void Register(String Username, String Password, String HashKey, String ip) throws UnknownHostException, IOException {
+		host_Final = ip;
 		String HOST = host_Final;
         final int PORT = 25565;
         

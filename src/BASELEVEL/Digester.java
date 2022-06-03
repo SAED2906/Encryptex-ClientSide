@@ -9,7 +9,7 @@ public class Digester {
     public static void main(String[] args) {
     	String temp = System.getProperty("user.name") + System.getenv("PROCESSOR_IDENTIFIER") + System.getenv("PROCESSOR_LEVEL") + "";
         System.out.println(hexDigest(temp, "SHA-256"));
-        System.out.println(temp);
+        //System.out.println(temp);
     }
     
     public static String getKey() {

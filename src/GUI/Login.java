@@ -11,11 +11,13 @@ import BASELEVEL.Digester;
 import CLIENT.ThreadClient;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 
@@ -109,7 +111,7 @@ public class Login extends JFrame {
 					if (!Username.getText().isBlank()) {
 						if (!pwrd.isBlank()) {
 							if (pwrd.length() >= 5) {
-								if (ThreadClient.Login(Username.getText(), pwrd)) {
+								if (ThreadClient.Login(Username.getText(), pwrd, InetAddress.getLocalHost().getHostAddress())) {
 									setVisible(false);
 								}
 							}

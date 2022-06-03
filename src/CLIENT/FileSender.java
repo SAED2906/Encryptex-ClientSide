@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
@@ -122,7 +123,7 @@ public class FileSender {
 			//we don't need call this function as default value of blocking mode = true
 			socketChannel.configureBlocking(true);
 			
-			SocketAddress sockAddr = new InetSocketAddress("105.208.196.39", Port);
+			SocketAddress sockAddr = new InetSocketAddress(InetAddress.getLocalHost().getHostAddress(), Port);
 			socketChannel.connect(sockAddr);
 			return socketChannel;
 		}
