@@ -18,3 +18,6 @@ The shared hash key will be stored on each computer within the transfer for futu
 </p>
 
 ServerSide: https://github.com/SAED2906/Encryptex-ServerSide
+
+BOTH THE CLIENT AND SERVER ARE CURRENTLY LISTENING TO LOCALHOST
+to you with a different IP, download the code and replace all intances of InetAddress.getLocalHost().getHostAddress(); with your own local IP, or with your public IP, given you have port fowarded 25565 and 25575 to your static IP.
